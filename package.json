@@ -1,0 +1,25 @@
+{
+  "name": "osd-atom-snippets",
+  "version": "0.1.0",
+  "description": "Snippets for react and react-native used at Osedea",
+   "keywords": [
+    "react",
+    "redux",
+    "snippets",
+    "es6"
+  ],
+  "activationCommands": {
+    "atom-workspace": "osd-atom-snippets:toggle"
+  },
+  "repository": "https://github.com/Osedea/osd-atom-snippets",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Osedea/osd-atom-snippets/issues"
+  },
+  "homepage": "https://github.com/Osedea/osd-atom-snippets",
+  "dependencies": {
+  }
+}
