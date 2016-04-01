@@ -1,8 +1,8 @@
 {
   "name": "osd-atom-snippets",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Snippets for react and react-native used at Osedea",
-   "keywords": [
+  "keywords": [
     "react",
     "redux",
     "snippets",
@@ -20,6 +20,5 @@
     "url": "https://github.com/Osedea/osd-atom-snippets/issues"
   },
   "homepage": "https://github.com/Osedea/osd-atom-snippets",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
