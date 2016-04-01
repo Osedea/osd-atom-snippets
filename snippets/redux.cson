@@ -1,9 +1,9 @@
 ".source.js":
     "Redux Action":
-        prefix: "redux-action"
+        prefix: "redux-action-creator"
         body: """
             const ${1:actionType} = '${1:actionType}';
-            const _$2 = (${3:arguments}) => ({
+            const $2 = (${3:arguments}) => ({
                 type: ${1:actionType},
                 payload: {
                     $4: $5
@@ -34,15 +34,35 @@
     "Redux Duck":
         prefix: "redux-duck"
         body: """
-            ${redux-action}
+            const ${1:actionType} = '${1:actionType}';
+            const $2 = (${3:arguments}) => ({
+                type: ${1:actionType},
+                payload: {
+                    $4: $5
+                },
+                meta: {
+                    $6: $7
+                }
+            });
 
-            ${redux-reducer}
+            const defaultState = {};
+            const $8Reducer = (
+                state = defaultState,
+                action = { type: '' }
+            ) => {
+                switch (action.type) {
+                    case $1:
+                        return $9;
+                    default:
+                        return state;
+                }
+            };
 
             export default {
                 actionCreators: {
-                    $1,
+                    $2,
                 },
-                $2Reducer
+                $8Reducer
             }
         """
 
