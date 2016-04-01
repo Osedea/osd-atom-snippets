@@ -1,0 +1,64 @@
+".source.js":
+    "Redux Action":
+        prefix: "redux-action"
+        body: """
+            const ${1:actionType} = '${1:actionType}';
+            const _$2 = (${3:arguments}) => ({
+                type: ${1:actionType},
+                payload: {
+                    $4: $5
+                },
+                meta: {
+                    $6: $7
+                }
+            });
+        """
+
+    "Redux Reducer":
+        prefix: "redux-reducer"
+        body: """
+            const defaultState = {};
+            const $1Reducer = (
+                state = defaultState,
+                action = { type: '' }
+            ) => {
+                switch (action.type) {
+                    case $2:
+                        return $3;
+                    default:
+                        return state;
+                }
+            };
+        """
+
+    "Redux Duck":
+        prefix: "redux-duck"
+        body: """
+            ${redux-action}
+
+            ${redux-reducer}
+
+            export default {
+                actionCreators: {
+                    $1,
+                },
+                $2Reducer
+            }
+        """
+
+    "Redux mapStateToProps":
+        prefix: "redux-mapStateToProps"
+        body: """
+            const mapStateToProps = (state) => ({
+                ${1:prop}: state.${2:stateAttribute},
+            });
+        """
+
+    "Redux mapDispatchToProps":
+        prefix: "redux-mapDispatchToProps"
+        body: """
+            import { actionCreators } from '';
+            const mapDispatchToProps = (dispatch) => {
+                bindActionCreators(${1:actionCreators}, dispatch);
+            };
+        """
