@@ -78,3 +78,7 @@
                 mapDispatchToProps}
             )($3);
         """
+
+    "React Native Router Flux Import":
+        prefix: "osdRNRouterImport"
+        body: "import { Actions } from 'react-native-router-flux';"
