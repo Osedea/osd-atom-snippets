@@ -1,30 +1,34 @@
 ".source.js":
     "Redux Action":
-        prefix: "redux-action-creator"
+        prefix: "osdActionCreator"
         body: """
             const ${1:actionType} = '${1:actionType}';
-            const $2 = (${3:arguments}) => ({
+
+            export const ${2:actionCreatorName} = (
+                ${3:arguments}
+            ) => ({
                 type: ${1:actionType},
                 payload: {
-                    $4: $5
-                },
-                meta: {
-                    $6: $7
+                    $3
                 }
             });
         """
 
     "Redux Reducer":
-        prefix: "redux-reducer"
+        prefix: "osdReducer"
         body: """
-            const defaultState = {};
-            const $1Reducer = (
+            const initialState = {};
+
+            export const $1Reducer = (
                 state = defaultState,
                 action = { type: '' }
             ) => {
                 switch (action.type) {
                     case $2:
-                        return $3;
+                        return {
+                            ...state,
+                            $3
+                        };
                     default:
                         return state;
                 }
@@ -32,42 +36,65 @@
         """
 
     "Redux Duck":
-        prefix: "redux-duck"
+        prefix: "osdDuck"
         body: """
             const ${1:actionType} = '${1:actionType}';
-            const $2 = (${3:arguments}) => ({
+
+            const ${2:actionCreatorName} = (
+                ${3:arguments}
+            ) => ({
                 type: ${1:actionType},
                 payload: {
-                    $4: $5
-                },
-                meta: {
-                    $6: $7
+                    $3
                 }
             });
 
-            const defaultState = {};
-            const $8Reducer = (
+            export const ${4:actionCreators} = {
+                ${2:actionCreatorName}
+            }
+
+            const initialState = {};
+
+            export default const $5Reducer = (
                 state = defaultState,
                 action = { type: '' }
             ) => {
                 switch (action.type) {
                     case $1:
-                        return $9;
+                        return {
+                            ...state,
+                            $6
+                        };
                     default:
                         return state;
                 }
             };
+        """
 
-            export default {
-                actionCreators: {
-                    $2,
-                },
-                $8Reducer
-            }
+    "Redux connect":
+        prefix: "osdConnect"
+        body: """
+            import { connect } from 'react-redux';
+            import { bindActionCreators } from 'redux';
+
+            ${1:const mapStateToProps = (state) => ({
+                ${2:prop}: state.${3:stateAttribute},
+            \\\});}
+
+            ${4:import { ${5:actionCreators} \\\} from '$6';
+
+            const mapDispatchToProps = (dispatch) => {
+                bindActionCreators(${5:actionCreators}, dispatch);
+            \\\};}
+
+            export default connect(
+                ${1:mapStateToProps},
+                ${4:mapDispatchToProps}
+            )($9);
         """
 
     "Redux mapStateToProps":
-        prefix: "redux-mapStateToProps"
+        prefix: "osdMapStateToProps"
         body: """
             const mapStateToProps = (state) => ({
                 ${1:prop}: state.${2:stateAttribute},
@@ -75,9 +102,10 @@
         """
 
     "Redux mapDispatchToProps":
-        prefix: "redux-mapDispatchToProps"
+        prefix: "osdMapDispatchToProps"
         body: """
-            import { actionCreators } from '';
+            import { ${1:actionCreators} } from '$2';
+
             const mapDispatchToProps = (dispatch) => {
                 bindActionCreators(${1:actionCreators}, dispatch);
             };

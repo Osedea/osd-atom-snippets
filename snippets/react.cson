@@ -1,0 +1,103 @@
+".source.js":
+    "React component":
+        prefix: "osdReactClass"
+        body: """
+            import React, { Component } from 'react';
+
+            export default class $1 extends Component {
+                ${2:static propTypes = {
+                    ${3:prop}: React.PropTypes.$4,
+                \\\}
+
+                }${5:constructor(props) {
+                    super(props);
+
+                    this.state = {\\\};
+                \\\}
+                }render() {
+                    return (
+                        $6
+                    );
+                }
+            }
+        """
+
+    "React connected component":
+        prefix: "osdReactConnectedClass"
+        body: """
+            import React, { Component } from 'react';
+            import { connect } from 'react-redux';${10:
+            import { bindActionCreators \\\} from 'redux';}
+
+            class $1 extends Component {
+                ${2:static propTypes = {
+                    ${3:prop}: React.PropTypes.$4,
+                \\\}
+
+                }${5:constructor(props) {
+                    super(props);
+
+                    this.state = {\\\};
+                \\\}
+
+                }render() {
+                    return (
+                        $6
+                    );
+                }
+            }
+
+            ${7:const mapStateToProps = (state) => ({
+                ${8:prop}: state.${9:stateAttribute},
+            \\\});
+
+            }${10:import { ${11:actionCreators} \\\} from '$12';
+
+            const mapDispatchToProps = (dispatch) => {
+                bindActionCreators(${11:actionCreators}, dispatch);
+            \\\};
+            }
+            export default connect(
+                ${7:mapStateToProps}$12,${10:
+                mapDispatchToProps}
+            )($1);
+        """
+
+    "React componentWillReceiveProps":
+        prefix: "osdComponentWillReceiveProps"
+        body: """
+            componentWillReceiveProps(nextProps) {
+                ${1:this.setState({
+                    $2: nextProps.$3
+                });}
+            }
+        """
+
+    "React componentWillMount":
+        prefix: "osdComponentWillMount"
+        body: """
+            componentWillMount() {
+                $1
+            }${2:
+            componentWillUnmount() {
+                $3
+            }}
+        """
+
+
+    "React componentDidMount (for AJAX Calls)":
+        prefix: "osdComponentDidMount"
+        body: """
+            componentDidMount() {
+                $1
+            }
+        """
+
+    "JSX ternary":
+        prefix: "osd?"
+        body: """
+            { $1
+                ? $2
+                : $3
+            }
+        """
