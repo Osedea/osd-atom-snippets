@@ -1,0 +1,80 @@
+".source.js":
+    "React Native component":
+        prefix: "osdRNClass"
+        body: """
+            import React, {
+                Component,
+                StyleSheet,${1:
+                View,
+            }} from 'react-native';
+
+            const styles = StyleSheet.create({
+                ${2:container:{}}
+            });
+
+            export default class $3 extends Component {
+                ${4:static propTypes = {
+                    ${5:prop}: React.PropTypes.$6,
+                \\\}
+
+                }${7:constructor(props) {
+                    super(props);
+
+                    this.state = {\\\};
+                \\\}
+                }render() {
+                    return (
+                        $8
+                    );
+                }
+            }
+        """
+
+    "React Native connected component":
+        prefix: "osdRNConnectedClass"
+        body: """
+            import React, {
+                Component,
+                StyleSheet,${1:
+                View,
+            }} from 'react-native';
+            import { connect } from 'react-redux';${10:
+            import { bindActionCreators \\\} from 'redux';}
+
+            const styles = StyleSheet.create({
+                ${2:container:{}}
+            });
+
+            class $3 extends Component {
+                ${4:static propTypes = {
+                    ${5:prop}: React.PropTypes.$6,
+                \\\}
+
+                }${7:constructor(props) {
+                    super(props);
+
+                    this.state = {\\\};
+                \\\}
+
+                }render() {
+                    return (
+                        $8
+                    );
+                }
+            }
+
+            ${9:const mapStateToProps = (state) => ({
+                ${10:prop}: state.$11,
+            \\\});
+
+            }${12:import { ${13:actionCreators} \\\} from '$14';
+
+            const mapDispatchToProps = (dispatch) => {
+                bindActionCreators(${13:actionCreators}, dispatch);
+            \\\};
+
+            }export default connect(
+                ${9:mapStateToProps}$14,${12:
+                mapDispatchToProps}
+            )($3);
+        """
