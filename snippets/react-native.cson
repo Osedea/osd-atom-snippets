@@ -48,7 +48,7 @@
             class $3 extends Component {
                 ${4:static propTypes = {
                     ${5:prop}: React.PropTypes.$6,
-                \\\}
+                \\\};
 
                 }${7:constructor(props) {
                     super(props);

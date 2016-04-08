@@ -7,7 +7,7 @@
             export default class $1 extends Component {
                 ${2:static propTypes = {
                     ${3:prop}: React.PropTypes.$4,
-                \\\}
+                \\\};
 
                 }${5:constructor(props) {
                     super(props);
@@ -32,7 +32,7 @@
             class $1 extends Component {
                 ${2:static propTypes = {
                     ${3:prop}: React.PropTypes.$4,
-                \\\}
+                \\\};
 
                 }${5:constructor(props) {
                     super(props);
