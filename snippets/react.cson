@@ -63,6 +63,19 @@
             )($1);
         """
 
+
+    "React constructor":
+        prefix: "osdConstructor"
+        body: """
+            constructor(props) {
+                super(props);
+
+                ${1:this.state = {
+                    $2: props.${3:$2}
+                \\\};}
+            }
+        """
+
     "React componentWillReceiveProps":
         prefix: "osdComponentWillReceiveProps"
         body: """

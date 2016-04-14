@@ -9,7 +9,7 @@
             }} from 'react-native';
 
             const styles = StyleSheet.create({
-                ${3:container: {}}
+                ${3:container: {\\\}}
             });
 
             export default class $1 extends Component {
@@ -42,7 +42,7 @@
             import { bindActionCreators \\\} from 'redux';}
 
             const styles = StyleSheet.create({
-                ${3:container: {}}
+                ${3:container: {\\\}}
             });
 
             class $1 extends Component {
