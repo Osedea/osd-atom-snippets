@@ -2,11 +2,11 @@
     "React Native component":
         prefix: "osdRNClass"
         body: """
-            import React, {
-                Component,
+            import React, { Component } from 'react';
+            import {
                 StyleSheet,${2:
-                View,
-            }} from 'react-native';
+                View,}
+            } from 'react-native';
 
             const styles = StyleSheet.create({
                 ${3:container: {\\\}}
@@ -14,7 +14,7 @@
 
             export default class $1 extends Component {
                 ${4:static propTypes = {
-                    ${5:prop}: React.PropTypes.$6,
+                    ${5:prop}: React.PropTypes.${6:string},
                 \\\};
 
                 }${7:constructor(props) {
@@ -24,7 +24,9 @@
                 \\\}
                 }render() {
                     return (
-                        $8
+                        <View style={styles.container}>
+                            $8
+                        </View>
                     );
                 }
             }
@@ -33,13 +35,11 @@
     "React Native connected component":
         prefix: "osdRNConnectedClass"
         body: """
-            import React, {
-                Component,
+            import React, { Component } from 'react';
+            import {
                 StyleSheet,${2:
-                View,
-            }} from 'react-native';
-            import { connect } from 'react-redux';${10:
-            import { bindActionCreators \\\} from 'redux';}
+                View,}
+            } from 'react-native';
 
             const styles = StyleSheet.create({
                 ${3:container: {\\\}}
@@ -47,7 +47,7 @@
 
             class $1 extends Component {
                 ${4:static propTypes = {
-                    ${5:prop}: React.PropTypes.$6,
+                    ${5:prop}: React.PropTypes.${6:string},
                 \\\};
 
                 }${7:constructor(props) {
@@ -58,10 +58,15 @@
 
                 }render() {
                     return (
-                        $8
+                        <View style={styles.container}>
+                            $8
+                        </View>
                     );
                 }
             }
+
+            import { connect } from 'react-redux';${10:
+            import { bindActionCreators \\\} from 'redux';}
 
             ${9:const mapStateToProps = (state) => ({
                 ${10:prop}: state.$11,
