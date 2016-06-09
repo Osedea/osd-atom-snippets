@@ -87,3 +87,79 @@
     "React Native Router Flux Import":
         prefix: "osdRNRouterImport"
         body: "import { Actions } from 'react-native-router-flux';"
+
+    "Data butler":
+        prefix: "osdRNDatabutler"
+        body: """
+            import RequestHandler from '${$1:PROJECT_NAME}/app/helpers/RequestHandler';
+
+            import { ${2:ActionTypes} } from '${$1:PROJECT_NAME}/app/modules/$3';${4:
+
+            export const SYNC_${6:THING}S = '${$1:PROJECT_NAME}/SYNC_${6:THING}S';
+
+            export const sync${7:Things}FromServer = (todos) => ({
+                type: SYNC_${6:THING}S,
+                payload: todos,
+            \\\\});}
+
+            export default (action, store) => {
+                switch (action.type) {${4:
+                    // Router actions
+                    case 'focus':
+                    case 'backAction':
+                        // REQUEST_SYNC and dispatch
+                        break;}{5:
+                    case CREATE_${6:THING}:
+                        RequestHandler.requestServer(
+                            '${7:thing}',
+                            'POST',
+                            action.payload
+                        ).then((${7:thing}sFromServer) => {
+                            if (${7:thing}sFromServer) {
+                                store.dispatch(sync${7:Things}FromServer(${7:thing}sFromServer));
+                            \\\\}
+                        })
+                        .catch((error) => console.info(error));
+                        break;
+                    case READ_${6:THING}:
+                        RequestHandler.requestServer('${7:thing}s')
+                        .then((${7:thing}s) => {
+                            store.dispatch(sync${7:Things}FromServer(${7:thing}s));
+                        \\\\})
+                        .catch(console.info);
+                        break;
+                    case UPDATE_${6:THING}:
+                        RequestHandler.requestServer(
+                            `${7:thing}/${action.meta.id}`,
+                            'POST',
+                            action.payload
+                        ).then((${7:thing}sFromServer) => {
+                            if (${7:thing}sFromServer) {
+                                store.dispatch(sync${7:Things}FromServer(${7:thing}sFromServer));
+                            \\\\}
+                        \\\\})
+                        .catch((error) => console.info(error));
+                        break;
+                    case DELETE_${6:THING}:
+                        RequestHandler.requestServer(
+                         `${7:thing}/${action.meta.id}`,
+                         'DELETE'
+                        ).then((${7:thing}sFromServer) => {
+                         if (${7:thing}sFromServer) {
+                             store.dispatch(sync${7:Things}FromServer(${7:thing}sFromServer));
+                         \\\\}
+                        \\\\})
+                        .catch((error) => console.info(error));
+                        break;
+                    case READ_${6:THING}S:
+                        RequestHandler.requestServer('${7:thing}s')
+                        .then((${7:thing}s) => {
+                            store.dispatch(sync${7:Things}FromServer(${7:thing}s));
+                        \\\\})
+                        .catch(console.info);
+                        break;}
+                    default:
+                        break;
+                }
+            };
+        """
